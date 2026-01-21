@@ -8,7 +8,6 @@ library(forcats)
 library(tibble)
 library(scales)
 
-
 #load texts
 getwd()
 setwd("/Users/jifei/Desktop/Duke/26 Spring/IDS 570 Text as Data/texts")
@@ -126,3 +125,4 @@ dplyr::n_distinct(word_comparison_tbl$word)
 word_plot_data %>%
   dplyr::distinct(word) %>%
   nrow()
+
