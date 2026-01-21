@@ -109,10 +109,3 @@ ggplot(word_plot_data, aes(x = relative_freq, y = word)) +
     y = NULL
   ) +
   theme_minimal()
-
-nrow(word_comparison_tbl)
-dplyr::n_distinct(word_comparison_tbl$word)
-
-word_plot_data %>%
-  dplyr::distinct(word) %>%
-  nrow()
