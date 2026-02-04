@@ -47,7 +47,8 @@ print(raw_freq)
 
 #Define stopwords
 data("stop_words")
-custom_stopwords <- tibble(word = c("vnto", "haue", "doo", "hath", "bee", "ye", "thee"))
+custom_stopwords <- tibble(word = c(  "vnto","haue","doo","hath","bee","ye","thee","hee","shall","hast","doe",
+                                      "beene","thereof","thus"))
 all_stopwords <- bind_rows(stop_words, custom_stopwords)%>%
   distinct(word)
 all_stopwords %>% slice(1:10)
