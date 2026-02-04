@@ -49,7 +49,7 @@ raw_sentiment <- word_normalized %>%
     n_positive = sum(positive),
     n_negative = sum(negative),
     net_sentiment = n_positive - n_negative
-    )
+  )
 print (raw_sentiment)
 
 
@@ -57,12 +57,24 @@ print (raw_sentiment)
 #4. Compute TF-IDF for words in each document
 word_tf_idf <- word_normalized %>%
   bind_tf_idf(word, doc_title, n)
-print(word_tf_idf)
 
 #5 Keep only sentiment-bearing words
 bing_tf_idf <- word_tf_idf %>%
   inner_join(bing, by = "word")
-print(bing_tf_idf)
+
+# Q3: Which specific words drove the changes?
+#The Words have the lowest TF-IDF
+removed_words <- bing_tf_idf %>%
+  group_by(doc_title) %>%
+  filter(tf_idf == 0) %>%
+  slice_head(n = 5)
+print (removed_words)
+#The Words have the highest TF-IDF
+top_words <- bing_tf_idf %>%
+  group_by(doc_title) %>%
+  arrange(desc(tf_idf)) %>%
+  slice_head(n = 5)
+print (top_words)
 
 #6 Compute TF-IDF–weighted sentiment totals
 sentiment_tfidf_summary <- bing_tf_idf %>%
@@ -77,6 +89,7 @@ sentiment_tfidf_summary <- bing_tf_idf %>%
     tfidf_negative = tidyr::replace_na(tfidf_negative, 0),
     net_sentiment_tfidf = tfidf_positive - tfidf_negative
   )
+print (sentiment_tfidf_summary)
 
 #7: Compare Raw and TF-IDF Sentiment
 final_sentiment_comparison <- raw_sentiment %>%
