@@ -23,7 +23,7 @@ texts <- tibble(
   text = c(text_a, text_b))
 
 
-#Section I. Raw Word Counts
+#Section I. Raw-Count Sentiment Analysis
 #Tokenize and clean the text
 data("stop_words")
 custom_stopwords <- tibble(word = c("vnto","haue","doo","hath","bee","ye","thee","hee","shall","hast","doe",
@@ -64,11 +64,11 @@ bing_tf_idf <- word_tf_idf %>%
 
 # Q3: Which specific words drove the changes?
 #The Words have the lowest TF-IDF
-removed_words <- bing_tf_idf %>%
+zero_words <- bing_tf_idf %>%
   group_by(doc_title) %>%
   filter(tf_idf == 0) %>%
   slice_head(n = 5)
-print (removed_words)
+print (zero_words)
 #The Words have the highest TF-IDF
 top_words <- bing_tf_idf %>%
   group_by(doc_title) %>%
