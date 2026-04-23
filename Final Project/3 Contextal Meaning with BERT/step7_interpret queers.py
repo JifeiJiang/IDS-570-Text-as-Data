@@ -101,7 +101,7 @@ feature_names = feature_names[keep_mask]
 
 
 
-# Helper function: see [2] below
+# Finding the top TF-IDF distcintive words
 def get_top_distinctive_terms(tfidf_matrix, labels, target_cluster, feature_names, top_n=10):
 
     in_cluster = labels == target_cluster
