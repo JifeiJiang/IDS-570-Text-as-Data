@@ -42,7 +42,7 @@ for i, meta in enumerate(queer_metadata):
         doc_cluster_totals[doc_cluster] += 1
     sense_totals[queer_sense] += 1
 
-# Print Table 1: Raw Counts
+# Print Table
 header_width = 15 + (len(QUEER_SENSES) * 14) + 10
 print("\n" + "=" * header_width)
 print("CROSS-TABULATION: Document Cluster x Queer Sense")
